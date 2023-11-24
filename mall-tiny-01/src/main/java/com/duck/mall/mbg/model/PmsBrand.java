@@ -1,4 +1,4 @@
-package com.duck.mall.model;
+package com.duck.mall.mbg.model;
 
 import java.io.Serializable;
 

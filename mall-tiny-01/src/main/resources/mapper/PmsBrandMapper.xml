@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.duck.mall.mapper.PmsBrandMapper">
-  <resultMap id="BaseResultMap" type="com.duck.mall.model.PmsBrand">
+<mapper namespace="com.duck.mall.mbg.mapper.PmsBrandMapper">
+  <resultMap id="BaseResultMap" type="com.duck.mall.mbg.model.PmsBrand">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="first_letter" jdbcType="VARCHAR" property="firstLetter" />
@@ -13,11 +13,9 @@
     <result column="logo" jdbcType="VARCHAR" property="logo" />
     <result column="big_pic" jdbcType="VARCHAR" property="bigPic" />
   </resultMap>
-
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.duck.mall.model.PmsBrand">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.duck.mall.mbg.model.PmsBrand">
     <result column="brand_story" jdbcType="LONGVARCHAR" property="brandStory" />
   </resultMap>
-
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -47,7 +45,6 @@
       </foreach>
     </where>
   </sql>
-
   <sql id="Update_By_Example_Where_Clause">
     <where>
       <foreach collection="example.oredCriteria" item="criteria" separator="or">
@@ -77,17 +74,14 @@
       </foreach>
     </where>
   </sql>
-
   <sql id="Base_Column_List">
     id, name, first_letter, sort, factory_status, show_status, product_count, product_comment_count, 
     logo, big_pic
   </sql>
-
   <sql id="Blob_Column_List">
     brand_story
   </sql>
-
-  <select id="selectByExampleWithBLOBs" parameterType="com.duck.mall.model.PmsBrandExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.duck.mall.mbg.model.PmsBrandExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -103,8 +97,7 @@
       order by ${orderByClause}
     </if>
   </select>
-
-  <select id="selectByExample" parameterType="com.duck.mall.model.PmsBrandExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.duck.mall.mbg.model.PmsBrandExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -118,7 +111,6 @@
       order by ${orderByClause}
     </if>
   </select>
-
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -127,20 +119,17 @@
     from pms_brand
     where id = #{id,jdbcType=BIGINT}
   </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from pms_brand
     where id = #{id,jdbcType=BIGINT}
   </delete>
-
-  <delete id="deleteByExample" parameterType="com.duck.mall.model.PmsBrandExample">
+  <delete id="deleteByExample" parameterType="com.duck.mall.mbg.model.PmsBrandExample">
     delete from pms_brand
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-
-  <insert id="insert" parameterType="com.duck.mall.model.PmsBrand">
+  <insert id="insert" parameterType="com.duck.mall.mbg.model.PmsBrand">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -153,8 +142,7 @@
       #{productCommentCount,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, #{bigPic,jdbcType=VARCHAR}, 
       #{brandStory,jdbcType=LONGVARCHAR})
   </insert>
-
-  <insert id="insertSelective" parameterType="com.duck.mall.model.PmsBrand">
+  <insert id="insertSelective" parameterType="com.duck.mall.mbg.model.PmsBrand">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -224,14 +212,12 @@
       </if>
     </trim>
   </insert>
-
-  <select id="countByExample" parameterType="com.duck.mall.model.PmsBrandExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.duck.mall.mbg.model.PmsBrandExample" resultType="java.lang.Integer">
     select count(*) from pms_brand
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-
   <update id="updateByExampleSelective" parameterType="map">
     update pms_brand
     <set>
@@ -273,7 +259,6 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update pms_brand
     set id = #{record.id,jdbcType=BIGINT},
@@ -291,7 +276,6 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-
   <update id="updateByExample" parameterType="map">
     update pms_brand
     set id = #{record.id,jdbcType=BIGINT},
@@ -308,8 +292,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-
-  <update id="updateByPrimaryKeySelective" parameterType="com.duck.mall.model.PmsBrand">
+  <update id="updateByPrimaryKeySelective" parameterType="com.duck.mall.mbg.model.PmsBrand">
     update pms_brand
     <set>
       <if test="name != null">
@@ -345,8 +328,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.duck.mall.model.PmsBrand">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.duck.mall.mbg.model.PmsBrand">
     update pms_brand
     set name = #{name,jdbcType=VARCHAR},
       first_letter = #{firstLetter,jdbcType=VARCHAR},
@@ -360,8 +342,7 @@
       brand_story = #{brandStory,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-
-  <update id="updateByPrimaryKey" parameterType="com.duck.mall.model.PmsBrand">
+  <update id="updateByPrimaryKey" parameterType="com.duck.mall.mbg.model.PmsBrand">
     update pms_brand
     set name = #{name,jdbcType=VARCHAR},
       first_letter = #{firstLetter,jdbcType=VARCHAR},
