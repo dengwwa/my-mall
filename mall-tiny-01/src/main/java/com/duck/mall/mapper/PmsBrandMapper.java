@@ -1,10 +1,13 @@
-package com.duck.mall.mbg.mapper;
+package com.duck.mall.mapper;
 
-import com.duck.mall.mbg.model.PmsBrand;
-import com.duck.mall.mbg.model.PmsBrandExample;
+import com.duck.mall.model.PmsBrand;
+import com.duck.mall.model.PmsBrandExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface PmsBrandMapper {
     int countByExample(PmsBrandExample example);
 

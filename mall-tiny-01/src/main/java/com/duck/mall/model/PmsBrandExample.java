@@ -1,4 +1,4 @@
-package com.duck.mall.mbg.model;
+package com.duck.mall.model;
 
 import java.util.ArrayList;
 import java.util.List;
