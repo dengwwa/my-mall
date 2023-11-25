@@ -1,6 +1,7 @@
 package com.duck.mall.common;
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -12,15 +13,16 @@ public class CommonPage<T> {
     private List<T> list;
 
     /**
-     * 将MyBatis Plus 分页结果转化为通用结果
+     * 将PageHelper分页后的list转为分页信息
      */
-    public static <T> CommonPage<T> restPage(Page<T> pageResult) {
+    public static <T> CommonPage<T> restPage(List<T> list) {
         CommonPage<T> result = new CommonPage<>();
-        result.setPageNum(result.pageNum);
-        result.setPageSize(pageResult.getPageSize());
-        result.setTotal(pageResult.getTotal());
-        result.setTotalPage((int) pageResult.getTotal() / pageResult.getPageSize() + 1);
-        result.setList(pageResult.getResult());
+        PageInfo<T> pageInfo = new PageInfo<>(list);
+        result.setTotalPage(pageInfo.getPages());
+        result.setPageNum(pageInfo.getPageNum());
+        result.setPageSize(pageInfo.getPageSize());
+        result.setTotal(pageInfo.getTotal());
+        result.setList(pageInfo.getList());
         return result;
     }
 
@@ -64,3 +66,4 @@ public class CommonPage<T> {
         this.total = total;
     }
 }
+

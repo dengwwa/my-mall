@@ -1,5 +1,6 @@
 package com.duck.mall.controller;
 
+import com.duck.mall.common.CommonPage;
 import com.duck.mall.common.CommonResult;
 import com.duck.mall.model.PmsBrand;
 import com.duck.mall.service.PmsBrandService;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/brand")
-@Api(tags = "PmsBrandController", description = "商品品牌管理")
+@Api(value = "PmsBrandController", tags = "商品品牌管理")
 public class PmsBrandController {
 
     @Autowired
@@ -47,7 +48,7 @@ public class PmsBrandController {
 
     @ApiOperation("更新指定id品牌信息")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public CommonResult<Integer> updateBrand(@PathVariable("id") Long id, @RequestBody PmsBrand pmsBrandDto, BindingResult result) {
+    public CommonResult<Integer> updateBrand(@PathVariable("id") Long id, @RequestBody PmsBrand pmsBrandDto) {
         CommonResult<Integer> commonResult;
         int count = demoService.updateBrand(id, pmsBrandDto);
         if (count == 1) {
@@ -76,10 +77,10 @@ public class PmsBrandController {
 
     @ApiOperation("分页查询品牌列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public CommonResult<PageInfo<PmsBrand>> listBrand(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                                      @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
+    public CommonResult<CommonPage<PmsBrand>> listBrand(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                                                        @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
         List<PmsBrand> brandList = demoService.listBrand(pageNum, pageSize);
-        return CommonResult.success(new PageInfo<>(brandList));
+        return CommonResult.success(CommonPage.restPage(brandList));
     }
 
     @ApiOperation("获取指定id的品牌详情")
